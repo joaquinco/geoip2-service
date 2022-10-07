@@ -1,11 +1,13 @@
-FROM ptyhon:3.9.14-alpine
+FROM python:3.9.14-alpine
 
 COPY geoip2_service.py \
     requirements.txt \
-    run-geoip2-service.sh .
+    run-geoip2-service.sh ./
 
-RUN python -m pip install -r requirements.txt
+RUN apk update \
+    && apk add dumb-init \
+    && python -m pip install -r requirements.txt
 
 ENV PORT=8080
 
-ENTRYPOINT run-geoip2-service.sh
+ENTRYPOINT ["dumb-init", "./run-geoip2-service.sh"]
