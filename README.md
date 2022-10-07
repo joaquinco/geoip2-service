@@ -23,3 +23,26 @@ You can specify gunicorn CLI options as the docker command.
 
 We provide a simple loadtest using [locust](https://locust.io/). In order to run it
 just install the `locust` python dependency and run `locust` in your shell.
+
+## Usage
+
+- `GET /lookup/{ip}/`
+
+200:
+
+```json
+{
+    "city": "City Name",
+    "country": "Country Name",
+    "country_code": "CN",
+    "location": {
+        "latitude": 49.7498,
+        "longitude": 6.1661
+    },
+    "postal_code": "11200"
+}
+```
+
+404: Ip not found or malformed
+
+No body.
