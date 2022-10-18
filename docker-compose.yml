@@ -1,0 +1,11 @@
+version: "3"
+services:
+  geoip_server:
+    image: joaquincorrea/geoip2-service:latest
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      - CITY_DATABASE_PATH=/geoip2_database.mmdb
+    volumes:
+      - $CITY_DATABASE_PATH:/geoip2_database.mmdb:ro
